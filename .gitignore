@@ -1,0 +1,23 @@
+
+# PyCharm
+.idea/
+*.iws
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+*.venv
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+EOF
