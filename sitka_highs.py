@@ -2,27 +2,29 @@ import csv
 from matplotlib import pyplot as plt
 from datetime import datetime
 
-filename = 'data/sitka_weather_07-2018_simple.csv'
+filename = 'data/sitka_weather_2018_simple.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
 
     # чтение дат и максимальных температур
-    dates, highs = [], []
+    dates, highs, lows = [], [], []
     for row in reader:
         current_date = datetime.strptime(row[2], '%Y-%m-%d')
         high = int(row[5])
+        low = int(row[6])
         dates.append(current_date)
         highs.append(high)
-print(highs)
+        lows.append(low)
 
 # нанесение данных на диаграмму
 plt.style.use('classic')
 fig, ax = plt.subplots()
 ax.plot(dates, highs, c='red')
+plt.plot(dates,lows, c='blue')
 
 # форматирование диаграммы
-plt.title('Daile high temperatures, July 2018', fontsize=24)
+plt.title('Daile high and low temperatures - 2018', fontsize=24)
 plt.xlabel('', fontsize=16)
 fig.autofmt_xdate()
 plt.ylabel('Temperature (F)', fontsize=16)
