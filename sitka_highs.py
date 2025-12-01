@@ -14,19 +14,24 @@ with open(filename2) as f2:
     head_row = next(read)
 
 
-    # чтение дат и максимальных температур
-    dates, highs, lows, precips = [], [], [],[]
-    for row in reader:
-        current_date = datetime.strptime(row[2], '%Y-%m-%d')
-        high = int(row[5])
-        low = int(row[6])
-        precip = float(row[3])
-        dates.append(current_date)
-        highs.append(high)
-        lows.append(low)
-        precips.append(precip)
+    # # чтение дат и максимальных температур
+    # dates, highs, lows, precips = [], [], [],[]
+    # for row in reader:
+    #     current_date = datetime.strptime(row[2], '%Y-%m-%d')
+    #     high = int(row[5])
+    #     low = int(row[6])
+    #     precip = float(row[3])
+    #     dates.append(current_date)
+    #     highs.append(high)
+    #     lows.append(low)
+    #     precips.append(precip)
 
     for row2 in read:
+        current_date = datetime.strptime(row2[2], '%Y-%m-%d')
+        dates, precips2 = [], []
+        precip2 = float(row2[3])
+        precips2.append(precip2)
+        dates.append(current_date)
 
 
 # нанесение данных на диаграмму
@@ -34,8 +39,9 @@ plt.style.use('classic')
 fig, ax = plt.subplots()
 #ax.plot(dates, highs, c='red', alpha=0.5)
 #ax.plot(dates, lows, c='blue', alpha=0.5)
-ax.plot(dates, precips, c='green', alpha=0.5)
+#ax.plot(dates, precips, c='green', alpha=0.5)
 #plt.fill_between(dates, highs, lows, facecolor='blue', alpha=0.1)
+ax.plot(dates,precips2, c='red', alpha=1)
 
 # форматирование диаграммы
 #plt.title('Daile high and low temperatures - 2018', fontsize=24)
