@@ -3,11 +3,16 @@ from matplotlib import pyplot as plt
 from datetime import datetime
 
 filename = 'data/sitka_weather_2018_simple.csv'
+filename2 = 'data/death_valley_2018_simple.csv'
 with open(filename) as f:
     reader = csv.reader(f)
     header_row = next(reader)
     for k, column_header in enumerate(header_row):
         print(k, column_header)
+with open(filename2) as f2:
+    read = csv.reader(f2)
+    head_row = next(read)
+
 
     # чтение дат и максимальных температур
     dates, highs, lows, precips = [], [], [],[]
@@ -20,6 +25,9 @@ with open(filename) as f:
         highs.append(high)
         lows.append(low)
         precips.append(precip)
+
+    for row2 in read:
+
 
 # нанесение данных на диаграмму
 plt.style.use('classic')
