@@ -25,7 +25,14 @@ with open(readable_file, 'w') as f:
     json.dump(all_eq_data, f, indent=4)
 
 # нанесение данных на карту
-data = [Scattergeo(lon=lons, lat=lats)]
+data = [{
+    'type': 'scattergeo',
+    'lon': lons,
+    'lat': lats,
+    'marker': {
+        'size': [5 * mag for mag in mags],
+    },
+}]
 my_layout = Layout(title="Global Earthquakes")
 
 fig = {'data':data,'layout':my_layout}
