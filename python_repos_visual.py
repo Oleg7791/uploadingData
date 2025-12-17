@@ -16,11 +16,14 @@ print(f'Total repositories: {response_dict['total_count']}')
 # анализ информации о репозиториях
 repo_dicts = response_dict['items']
 print(f'Repositories returned: {len(repo_dicts)}')
-repo_names, stars, labels = [], [], []
+repo_links, stars, labels = [], [], []
 
 print('\nSelected information about each repository:')
 for repo_dict in repo_dicts:
-    repo_names.append(repo_dict['name'])
+    repo_name = repo_dict['name']
+    repo_url = repo_dict['html_url']
+    repo_link = f'<a href="{repo_url}">{repo_name}</a>'
+    repo_links.append(repo_link)
     stars.append(repo_dict['stargazers_count'])
 
     owner = repo_dict['owner']['login']
@@ -31,7 +34,7 @@ for repo_dict in repo_dicts:
 # построение визуализации
 data = [{
     'type': 'bar',
-    'x': repo_names,
+    'x': repo_links,
     'y': stars,
     'hovertext':labels,
     'marker': {
